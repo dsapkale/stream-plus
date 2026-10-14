@@ -21,14 +21,14 @@ jobs:
             - name: docker login
               uses: docker/login-action@v4
               with:
-                username: $DOCKER_USERNAME
+                username: ${{env.DOCKER_USERNAME}}
                 password: ${{ secrets.DOCKER_TOKEN }}
             - name: docker build and push
               uses: docker/build-push-action@v7
               with:
                 context: .
                 push: true
-                tags: dsapkale/stream-plus:latest
+                tags: ${{env.DOCKER_USERNAME}}/stream-plus:latest
     
     deploy:
         runs-on: ubuntu-latest
